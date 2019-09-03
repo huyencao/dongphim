@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//admin
 Route::group(['namespace' => 'Admin'], function() {
 	Route::group(['prefix' => 'backend','middleware' => 'auth'], function() {
 		Route::resource('user', 'UserController', [ 'except' => [
@@ -26,8 +28,8 @@ Route::group(['namespace' => 'Admin'], function() {
 		Route::resource('setting', 'SettingController');
         Route::resource('cate-movie', 'CateMovieController');
         Route::post('cate-movie/deleteAll', ['as' => 'cate-movie.deleteAll', 'uses' => 'CateMovieController@deleteAll']);
-//        Route::resource('news', 'NewsController');
-//        Route::post('news/deleteAll', ['as' => 'news.deleteAll', 'uses' => 'NewsController@deleteAll']);
+        Route::resource('movie', 'MovieController');
+        Route::post('movie/deleteAll', ['as' => 'movie.deleteAll', 'uses' => 'MovieController@deleteAll']);
         Route::resource('banner', 'BannerController');
         Route::post('banner/deleteAll', ['as' => 'banner.deleteAll', 'uses' => 'BannerController@deleteAll']);
     });

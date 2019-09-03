@@ -10,7 +10,7 @@
             <div id="content" class="fl-right">
                 <div class="section" id="detail-page">
                     <div class="section-detail">
-                        <form action="{{ route('cate-movie.store') }}" method="POST">
+                        <form action="{{ route('cate-movie.store') }}" method="POST" enctype="multipart/form-data">
                             <div class="col-sm-12">
                                 @include('backend.block.error')
                             </div>
@@ -43,7 +43,11 @@
                                             <label>Danh mục cha</label>
                                             <select name="parent_id" class="form-control">
                                                 <option value="0">Chọn danh mục</option>
-{{--                                                <option value="1">Hiển thị</option>--}}
+                                                @if (!empty($cate_parent))
+                                                    @foreach ($cate_parent as $cate)
+                                                        <option value="{{ @$cate->id }}">{{ @$cate->name }}</option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -57,7 +61,8 @@
 
                                         <div class="form-group">
                                             <label>Meta Description</label>
-                                            <input type="text" name="meta_description" id="" class="form-control" value=""
+                                            <input type="text" name="meta_description" id="" class="form-control"
+                                                   value=""
                                                    style="height: 70px">
                                         </div>
 

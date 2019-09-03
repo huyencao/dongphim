@@ -166,6 +166,12 @@ class BannerController extends Controller
             $checked = $request->chkItem;
 
             foreach ($checked as $id) {
+                $banner = Banner::find($id);
+
+                if(File::exists($banner->image)){
+                    File::delete($banner->image);
+                }
+
                 Banner::where("id", $id)->delete();
             }
 

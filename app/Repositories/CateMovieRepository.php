@@ -8,22 +8,22 @@ class CateMovieRepository extends EloquentRepository
 {
     public function model()
     {
-        return \App\Models\CategoryNews::class;
+        return \App\Models\CateMovie::class;
     }
 
     public function listCateMovie()
     {
-        $data = CateMovie::orderBy('updated_at', 'DESC')->get();
+        $data = CateMovie::where('status', 1)->orderBy('updated_at', 'DESC')->get();
 
         return $data;
     }
 
-//    public function listCateParent()
-//    {
-//        $data = CategoryNews::where('status', 1)->get();
-//
-//        return $data;
-//    }
+    public function listCateParent()
+    {
+        $data = CateMovie::where('parent_id', 0)->where('status', 1)->get();
+
+        return $data;
+    }
 
     public function findCate($id)
     {

@@ -26,8 +26,8 @@
                         <label>Trạng thái</label>
                         <select name="status" class="form-control">
                             <option value="">Chọn trạng thái</option>
-                            <option value="1">Kích hoạt</option>
-                            <option value="0">Đóng</option>
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Không hiển thị</option>
                         </select>
                     </div>
                     <div class="form-group">

@@ -34,7 +34,33 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                @if (!empty($data))
+                                    @foreach ($data as $key => $item)
+                                        <tr>
+                                            <td><input type="checkbox" name="chkItem[]" value="{{ empty($item->id) == true ? '' :   $item->id }}"></td>
+                                            <td><span class="tbody-text">{{ ++$key }}</span>
+                                            <td class="clearfix title-news" style="display: flex">
+                                                <div class="tb-title fl-left">
+                                                    <a href="{{ route('cate-movie.edit', @$item->id) }}"
+                                                       title="xem">{{ !empty($item->name) ? $item->name : '' }}</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{ convertStatus(@$item->status) }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('cate-movie.edit', @$item->id) }}">
+                                                    <i class="fa fa-pencil fa-fw"></i> Sửa
+                                                </a>
+                                                <a href="javascript:;" class="btn-destroy"
+                                                   data-href="{{ route( 'cate-movie.destroy',  @$item->id ) }}"
+                                                   data-toggle="modal" data-target="#confim">
+                                                    <i class="fa fa-trash-o fa-fw"></i> Xóa
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 </tbody>
                             </table>
                         </div>

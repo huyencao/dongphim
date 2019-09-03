@@ -178,7 +178,17 @@
 
                     <a href="{{ route('cate-movie.index') }}">
 
-                        <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Quản lý danh mục</span>
+                        <i class="fa fa-film" aria-hidden="true"></i> <span>Quản lý danh mục</span>
+
+                    </a>
+
+                </li>
+
+                <li class="{{ Request::segment(2) === 'movie' ? 'active' : null  }}">
+
+                    <a href="{{ route('movie.index') }}">
+
+                        <i class="fa fa-ticket" aria-hidden="true"></i><span>Quản lý phim</span>
 
                     </a>
 
@@ -249,8 +259,6 @@
             <div class="box">
 
                 <div class="box-body">
-
-                    {{--                     Thông báo--}}
 
                     @if(session('flash_message'))
 
