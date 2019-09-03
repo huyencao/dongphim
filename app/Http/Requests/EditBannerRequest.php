@@ -24,7 +24,7 @@ class EditBannerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:191',
+            'name' => 'required|max:100',
             'status' => 'required',
         ];
     }

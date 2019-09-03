@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAboutTable extends Migration
+class CreateCateMovieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateAboutTable extends Migration
      */
     public function up()
     {
-        Schema::create('about', function (Blueprint $table) {
+        Schema::create('cate_movie', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->longText('content')->nullable();
-            $table->integer('status')->nullable();
+            $table->string('slug')->nullable();
+            $table->integer('parent_id')->nullable();
+            $table->integer('status');
+            $table->string('image')->nullable();
             $table->text('meta_title')->nullable();
             $table->longText('meta_description');
             $table->text('meta_keyword')->nullable();
@@ -32,6 +34,6 @@ class CreateAboutTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about');
+        Schema::dropIfExists('cate_movie');
     }
 }

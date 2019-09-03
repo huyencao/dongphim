@@ -24,17 +24,12 @@ Route::group(['namespace' => 'Admin'], function() {
 
 		Route::get('/', 'DashboardController@index');
 		Route::resource('setting', 'SettingController');
-        Route::resource('cate-news', 'CateNewsController');
-        Route::post('cate-news/deleteAll', ['as' => 'cate-news.deleteAll', 'uses' => 'CateNewsController@deleteAll']);
-        Route::resource('news', 'NewsController');
-        Route::post('news/deleteAll', ['as' => 'news.deleteAll', 'uses' => 'NewsController@deleteAll']);
+        Route::resource('cate-movie', 'CateMovieController');
+        Route::post('cate-movie/deleteAll', ['as' => 'cate-movie.deleteAll', 'uses' => 'CateMovieController@deleteAll']);
+//        Route::resource('news', 'NewsController');
+//        Route::post('news/deleteAll', ['as' => 'news.deleteAll', 'uses' => 'NewsController@deleteAll']);
         Route::resource('banner', 'BannerController');
         Route::post('banner/deleteAll', ['as' => 'banner.deleteAll', 'uses' => 'BannerController@deleteAll']);
-        Route::resource('about', 'PageController');
-//        Route::resource('social', 'SocialController');
-//        Route::post('social/deleteAll', ['as' => 'social.deleteAll', 'uses' => 'SocialController@deleteAll']);
-//        Route::resource('bank-account', 'BankAccountController');
-//        Route::post('bank-account/deleteAll', ['as' => 'bank-account.deleteAll', 'uses' => 'BankAccountController@deleteAll']);
     });
 });
 

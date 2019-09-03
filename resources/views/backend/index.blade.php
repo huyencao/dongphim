@@ -164,47 +164,6 @@
                         </li>
                 @endif
 
-                <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
-
-                    <a href="#">
-
-                        <i class="fa fa-cog" aria-hidden="true"></i> <span>Quản lý tin tức</span>
-
-                        <span class="pull-right-container">
-
-                     <i class="fa fa-angle-left pull-right"></i>
-
-                     </span>
-
-                    </a>
-
-                    <ul class="treeview-menu">
-
-                        <li class="{{ Request::segment(2) === 'cate-news' ? 'active' : null  }}">
-
-                            <a href="{{ route('cate-news.index') }}">
-
-                                <i class="fa fa-th-list" aria-hidden="true"></i> <span>Danh mục tin tức</span>
-
-                            </a>
-
-                        </li>
-
-                        <li class="{{ Request::segment(2) === 'news' ? 'active' : null  }}">
-
-                            <a href="{{ route('news.index') }}">
-
-                                <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>Danh sách tin tức</span>
-
-                            </a>
-
-                        </li>
-
-                    </ul>
-
-                </li>
-
-
                 <li class="{{ Request::segment(2) === 'banner' ? 'active' : null  }}">
 
                     <a href="{{ route('banner.index') }}">
@@ -215,25 +174,16 @@
 
                 </li>
 
-{{--                <li class="{{ Request::segment(2) === 'contact' ? 'active' : null  }}">--}}
+                <li class="{{ Request::segment(2) === 'cate-movie' ? 'active' : null  }}">
 
-{{--                    <a href="{{ route('contact-admin.index') }}">--}}
+                    <a href="{{ route('cate-movie.index') }}">
 
-{{--                        <i class="fa fa-connectdevelop" aria-hidden="true"></i> <span>Liên hệ</span>--}}
-
-{{--                    </a>--}}
-
-{{--                </li>--}}
-
-                <li class="{{ Request::segment(2) === 'about' ? 'active' : null  }}">
-
-                    <a href="{{ route('about.index') }}">
-
-                        <i class="fa fa-file-text-o" aria-hidden="true"></i> <span>Giới thiệu</span>
+                        <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Quản lý danh mục</span>
 
                     </a>
 
                 </li>
+
                 <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
 
                     <a href="#">
@@ -256,20 +206,6 @@
 
                         </li>
 
-{{--                        <li class="{{ Request::segment(2) === 'social' ? 'active' : null }}">--}}
-
-{{--                            <a href="{{ route('social.index') }}"><i class="fa fa-share-square-o"--}}
-{{--                                                                     aria-hidden="true"></i> Mạng xã hội</a>--}}
-
-{{--                        </li>--}}
-
-{{--                        <li class="{{ Request::segment(2) === 'bank-account' ? 'active' : null }}">--}}
-
-{{--                            <a href="{{ route('bank-account.index') }}"><i class="fa fa-university"--}}
-{{--                                                                           aria-hidden="true"></i> Quản lý tài khoản--}}
-{{--                                ngân hàng</a>--}}
-
-{{--                        </li>--}}
                     </ul>
 
                 </li>

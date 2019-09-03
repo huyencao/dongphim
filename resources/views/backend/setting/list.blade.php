@@ -25,47 +25,6 @@
 
             <div id="home" class="tab-pane fade in active">
                 <div class="col-lg-8">
-
-                    <div class="form-group">
-
-                        <label>Địa chỉ</label>
-
-                        <input type="text" class="form-control" name="site_address" id="site_address"
-
-                               value="{{ isset($site_info->site_address) ? $site_info->site_address : '' }}">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Email</label>
-
-                        <input type="email" class="form-control" name="site_email" id="site_email"
-
-                               value="{{ isset($site_info->site_email) ? $site_info->site_email : '' }}">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Số điện thoại</label>
-
-                        <input type="tel" class="form-control" name="site_phone" id="site_phone"
-
-                               value="{{ isset($site_info->site_phone) ? $site_info->site_phone : '' }}">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Hotline</label>
-
-                        <input type="tel" class="form-control" name="site_hotline" id="site_hotline"
-
-                               value="{{ isset($site_info->site_hotline) ? $site_info->site_hotline : '' }}">
-
-                    </div>
-
                     <div class="form-group">
 
                         <label>Logo</label><br>
@@ -74,7 +33,7 @@
 
                             <img src="{{ asset($site_info->site_logo) }}"
 
-                                 class="img-thumbnail" width="50%" style="display: block; margin-bottom: 10px">
+                                 class="img-thumbnail" width="100px" style="display: block; margin-bottom: 10px">
 
                         @endif
 
@@ -85,6 +44,7 @@
                         </div>
 
                     </div>
+                    {{--end logo--}}
 
                     <div class="form-group">
 
@@ -94,7 +54,7 @@
 
                             <img src="{{ asset($site_info->site_favicon) }}"
 
-                                 class="img-thumbnail" width="50%" style="display: block; margin-bottom: 10px">
+                                 class="img-thumbnail" width="100px" style="display: block; margin-bottom: 10px">
 
                         @endif
 
@@ -105,51 +65,6 @@
                         </div>
 
                     </div>
-
-                </div>
-
-                <div class="col-lg-4">
-
-                    <div class="form-group">
-
-                        <label>Fanpage</label>
-
-                        <textarea class="form-control" name="site_fanpage" id="site_fanpage"
-
-                                  rows="6">{{ isset($site_info->site_fanpage) ? $site_info->site_fanpage : '' }}</textarea>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Google Analytics</label>
-
-                        <textarea class="form-control" name="google_analytics" id="site_google_analytics"
-
-                                  rows="6">{{ isset($site_info->google_analytics) ? $site_info->google_analytics : '' }}</textarea>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Bản quyền</label>
-
-                        <input type="text" class="form-control" name="site_coppyright"
-
-                               value="{{ isset($site_info->site_coppyright) ? $site_info->site_coppyright : null }}">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>CODE GOOGLE MAPS</label>
-
-                        <textarea class="form-control" name="code_maps" id="code_maps"
-
-                                  rows="6">{!! isset($site_info->code_maps) ? $site_info->code_maps : null !!}</textarea>
-
-                    </div>
-
 
                 </div>
 
@@ -176,7 +91,6 @@
                         <textarea class="form-control" name="meta_description" id="meta_description"
 
                                   rows="6">{{ !empty($site_info->meta_description) ? $site_info->meta_description : '' }}</textarea>
-
                     </div>
 
                     <div class="form-group">
@@ -200,10 +114,7 @@
             </div>
 
             <!-- /.tab-content -->
-
         </div>
-
-        {{--   <button type="submit" class="btn btn-primary">Cập nhật</button>--}}
 
     </form>
 

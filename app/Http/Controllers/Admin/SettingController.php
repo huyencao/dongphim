@@ -224,16 +224,9 @@ class SettingController extends Controller
 
      */
 
-    public function update(SettingRequest $request, $id)
+    public function update(Request $request, $id)
 
     {
-
-        if (Auth::check()) {
-
-            $user = Auth::user();
-
-        }
-
         $setting = $this->setting->findSetting($id);
 
         if (!empty($request->file('fImage'))) {
@@ -306,9 +299,6 @@ class SettingController extends Controller
         $request->merge(
 
             [
-
-                'user_id' => $user->id,
-
                 'site_logo' => $site_logo,
 
                 'site_favicon' => $site_favicon
@@ -317,11 +307,7 @@ class SettingController extends Controller
 
         );
 
-
-
         $this->setting->update($id, $request->all());
-
-
 
         return redirect()->route('setting.index')->with([
 

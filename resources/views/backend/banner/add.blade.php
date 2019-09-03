@@ -35,14 +35,6 @@
                         <input type="text" name="content" id="" class="form-control" value=""
                                style="height: 70px">
                     </div>
-{{--                    <div class="form-group">--}}
-{{--                        <label>Loại banner</label>--}}
-{{--                        <select name="type" class="form-control">--}}
-{{--                            <option value="">Chọn loại banner</option>--}}
-{{--                            <option value="1">Banner chung</option>--}}
-{{--                            <option value="2">Banner sản phẩm</option>--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">

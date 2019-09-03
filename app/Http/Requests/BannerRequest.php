@@ -24,7 +24,7 @@ class BannerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:banners|max:191',
+            'name' => 'required|unique:banners|max:100',
             'status' => 'required',
             'fImage' => 'required|image|max:2048',
         ];
@@ -35,7 +35,7 @@ class BannerRequest extends FormRequest
         return [
             'name.required' => 'Bạn chưa nhập tên banner.',
             'name.unique' => 'Tên banner đã tồn tại.',
-            'name.max' => 'Tên không đúng định dạng.',
+            'name.max' => 'Tên banner không vượt quá 100 ký tự.',
             'status.required' => 'Bạn chưa chọn trạng thái banner.',
             'fImage.required' => 'Bạn chưa chọn ảnh banner.',
             'fImage.max' => 'Kích thước ảnh quá lớn.'

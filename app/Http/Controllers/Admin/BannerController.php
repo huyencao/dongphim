@@ -62,6 +62,7 @@ class BannerController extends Controller
                 'image' => !empty($image) == true ? $image : null,
             ]
         );
+
         $this->banner->create($request->all());
 
         return redirect(route('banner.index'))->with([
@@ -116,7 +117,7 @@ class BannerController extends Controller
         }
 
         if (empty($thumbnail)){
-            $image_banner = $banner->thumbnail;
+            $image_banner = $banner->image;
         } else
         {
             $image_banner = $thumbnail;
