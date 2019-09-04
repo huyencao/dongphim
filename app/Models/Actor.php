@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Episode extends Model
+class Actor extends Model
 {
-    protected $table = 'episode';
+    protected $table = 'actor';
 
-    protected $fillable = ['name', 'slug', 'url', 'name_movie', 'movie_id'];
+    protected $fillable =  ['name', 'slug', 'desc_actor', 'cast', 'image', 'movie_id'];
 
     public function movie()
     {

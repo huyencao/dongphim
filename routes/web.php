@@ -18,23 +18,30 @@ Route::get('/', function () {
 });
 
 //admin
-Route::group(['namespace' => 'Admin'], function() {
-	Route::group(['prefix' => 'backend','middleware' => 'auth'], function() {
-		Route::resource('user', 'UserController', [ 'except' => [
-		    'show'
-		]]);
+Route::group(['namespace' => 'Admin'], function () {
+    Route::group(['prefix' => 'backend', 'middleware' => 'auth'], function () {
+        Route::resource('user', 'UserController', ['except' => [
+            'show'
+        ]]);
 
-		Route::get('/', 'DashboardController@index');
-		Route::resource('setting', 'SettingController');
+        Route::get('/', 'DashboardController@index');
+        Route::resource('setting', 'SettingController');
         Route::resource('cate-movie', 'CateMovieController');
         Route::post('cate-movie/deleteAll', ['as' => 'cate-movie.deleteAll', 'uses' => 'CateMovieController@deleteAll']);
         Route::resource('movie', 'MovieController');
         Route::post('movie/deleteAll', ['as' => 'movie.deleteAll', 'uses' => 'MovieController@deleteAll']);
         Route::resource('banner', 'BannerController');
         Route::post('banner/deleteAll', ['as' => 'banner.deleteAll', 'uses' => 'BannerController@deleteAll']);
+        Route::resource('actor', 'ActorController');
+        Route::resource('episode', 'EpisodeController');
     });
 });
 
-Route::get('login',['as'=>'login', 'uses'=>'Auth\LoginController@getLogin']);
-Route::post('login','Auth\LoginController@login');
-Route::get('logout','Auth\LoginController@logout');
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
+Route::post('login', 'Auth\LoginController@login');
+Route::get('logout', 'Auth\LoginController@logout');
+
+//frontend
+Route::group(['namespace' => 'Frontend'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+});

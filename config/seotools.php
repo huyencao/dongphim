@@ -7,9 +7,9 @@ return [
          */
         'defaults'       => [
             'title'        => "", // set false to total remove
-            'description'  => 'Thế giới sách sigma book', // set false to total remove
+            'description'  => 'Yêu phim hot', // set false to total remove
             'separator'    => '',
-            'keywords'     => ['sigma book', 'sách'],
+            'keywords'     => ['động phim, yeu phim hot'],
             'canonical'    => false, // Set null for using Url::current(), set false to total remove
             'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
@@ -30,11 +30,11 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'Sigma Books', // set false to total remove
-            'description' => 'Thế giới sách sigma book', // set false to total remove
+            'title'       => 'Động phim', // set false to total remove
+            'description' => 'Yêu phim hot', // set false to total remove
             'url'         => '', // Set null for using Url::current(), set false to total remove
             'type'        => false,
-            'site_name'   => 'Sigma Books',
+            'site_name'   => 'Động phim',
             'images'      => [],
         ],
     ],
@@ -43,8 +43,8 @@ return [
          * The default values to be used by the twitter cards generator.
          */
         'defaults' => [
-          'card'        => 'Sigma Books',
-          'site'        => 'Sigma Books',
+          'card'        => 'Động phim',
+          'site'        => 'Động phim',
         ],
     ],
 ];

@@ -24,9 +24,8 @@ class CreateMoviesTable extends Migration
             $table->longText('content')->nullable();//nội dung
             $table->timestamp('air_date'); // ngày công chiếu
             $table->integer('episodes')->nullable(); // Số tập
-            $table->integer('movie_duration')->nullable();// độ dài - thời lượng bộ phim
+            $table->string('movie_duration')->nullable();// độ dài - thời lượng bộ phim
             $table->string('directors')->nullable(); // đạo diễn
-            $table->string('actor')->nullable(); // diễn viên
             $table->integer('cate_id')->nullable();
             $table->integer('status')->nullable();
             $table->string('image')->nullable();

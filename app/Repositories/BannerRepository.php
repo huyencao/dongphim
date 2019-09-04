@@ -34,15 +34,10 @@ class BannerRepository extends EloquentRepository
         return $data;
     }
 
-//    public function bannerHome(){
-//        $data = Banner::where('type', 1)->first();
-//
-//        return $data;
-//    }
-//
-//    public function bannerProduct(){
-//        $data = Banner::where('type', 2)->first();
-//
-//        return $data;
-//    }
+    public function listBannerActive()
+    {
+        $data = Banner::where('status', 1)->orderBy('updated_at', 'DESC')->get();
+
+        return $data;
+    }
 }

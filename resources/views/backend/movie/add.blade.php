@@ -1,25 +1,26 @@
-﻿@extends('backend.index')
+@extends('backend.index')
 
-@section('title', 'Thêm banner')
+@section('title', 'Thêm bộ phim')
 
-@section('controller','Quản lý banner')
-@section('controller_route', route('banner.index'))
+@section('controller','Quản lý phim')
+@section('controller_route', route('movie.index'))
 @section('action','Thêm')
 
 @section('content')
-    <form action="{{ route('banner.store') }}" method='POST' enctype="multipart/form-data" autocomplete="off">
+    <form action="{{ route('movie.store') }}" method='POST' enctype="multipart/form-data" autocomplete="off">
         <div class="col-sm-12">
             @include('backend.block.error')
         </div>
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home">Thông tin chung</a></li>
+            <li><a data-toggle="tab" href="#tab1">Cấu hình SEO</a></li>
         </ul>
         <div class="tab-content" style="margin: 50px 0px">
             <div id="home" class="tab-pane fade in active">
                 <div class="col-md-8">
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <div class="form-group">
-                        <label>Tên banner</label>
+                        <label>Tên bộ phim</label>
                         <input type="text" class="form-control" name="name" id="name">
                     </div>
                     <div class="form-group">
@@ -27,21 +28,82 @@
                         <input type="text" name="slug" id="slug" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Mô tả</label>
-                        <input type="text" name="desc_actor" id="" class="form-control" value=""
-                               style="height: 70px">
+                        <label>Thông Tin - Lịch Chiếu</label>
+                        <textarea id="content" cols="30" rows="10" name="show_times"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Vai diễn</label>
-                        <input type="text" name="cast" class="form-control">
+                        <label>Nội dung phim</label>
+                        <textarea id="content" cols="30" rows="10" name="content"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select name="status" class="form-control">
+                            <option value="">Chọn trạng thái</option>
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Không hiển thị</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Thông tin phim</label>
+                        <input type="text" name="info" id="" class="form-control" value="">
+                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label>Lượt view</label>--}}
+{{--                        <input type="text" name="view" id="" class="form-control" value="">--}}
+{{--                    </div>--}}
+                    <div class="form-group">
+                        <label>Năm sản xuất</label>
+                        <input type="number" min="0" name="production_year" id="" class="form-control" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Ngày công chiếu</label>
+                        <input type="date" name="air_date" id="" class="form-control" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Số tập</label>
+                        <input type="text" name="episodes" id="" class="form-control" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Thời lượng bộ phim</label>
+                        <input type="text" name="movie_duration" id="" class="form-control" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Đạo diễn</label>
+                        <input type="text" name="directors" id="" class="form-control" value="">
+                    </div>
+                    <div class="form-group">
+                        <label>Danh mục phim</label><br>
+                        <select class="js-select2 form-control" multiple="multiple" name="cate_id[]">
+                            {{ cateParent($cate_movie) }}
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label>Hình ảnh</label>
                         <div class="file-loading">
                             <input id="inpImg" name="fImage" type="file">
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab1" class="tab-pane fade">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Title SEO</label>
+                        <input type="text" class="form-control" name="meta_title" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <input type="text" name="meta_description" id="" class="form-control"
+                               value=""
+                               style="height: 70px">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Meta Keyword</label>
+                        <input type="text" class="form-control" name="meta_keyword" value="">
                     </div>
                 </div>
             </div>

@@ -50,6 +50,11 @@
 
     <link rel="stylesheet" href="{{ url('public/backend/cus/mystyle.css') }}">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="select222.css">
+    <link rel="stylesheet" href="">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
     <script type="text/javascript">
 
         function homeUrl() {
@@ -184,15 +189,44 @@
 
                 </li>
 
-                <li class="{{ Request::segment(2) === 'movie' ? 'active' : null  }}">
+                <li class="treeview {{ Request::segment(2) === 'movie' ? 'active' : null }}">
 
-                    <a href="{{ route('movie.index') }}">
+                    <a href="#">
 
                         <i class="fa fa-ticket" aria-hidden="true"></i><span>Quản lý phim</span>
 
+                        <span class="pull-right-container">
+
+                     <i class="fa fa-angle-left pull-right"></i>
+
+                     </span>
+
                     </a>
 
+                    <ul class="treeview-menu">
+
+                        <li class="{{ Request::segment(2) === 'movie' ? 'active' : null }}">
+
+                            <a href="{{ route('movie.index') }}"><i class="fa fa-film" aria-hidden="true"></i> Bộ phim</a>
+
+                        </li>
+
+                        <li class="{{ Request::segment(2) === 'episode' ? 'active' : null }}">
+
+                            <a href="{{ route('episode.index') }}"><i class="fa fa-video-camera" aria-hidden="true"></i> Danh sách tập phim</a>
+
+                        </li>
+
+                        <li class="{{ Request::segment(2) === 'actor' ? 'active' : null }}">
+
+                            <a href="{{ route('actor.index') }}"><i class="fa fa-users" aria-hidden="true"></i> Diễn viên</a>
+
+                        </li>
+                    </ul>
+
                 </li>
+
+
 
                 <li class="treeview {{ Request::segment(2) === 'setting' ? 'active' : null }}">
 

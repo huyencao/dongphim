@@ -23,7 +23,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        view()->composer('*', 'App\Http\ViewComposers\SettingComposer');
-//        view()->composer('*', 'App\Http\ViewComposers\BannerComposer');
+        view()->composer('*', 'App\Http\ViewComposers\SettingComposer');
+        view()->composer('*', 'App\Http\ViewComposers\BannerComposer');
     }
 }

@@ -8,28 +8,11 @@
             </div>
             <div class="col-md-8 flex-center">
                 <ul class="main-nav flex-center-between">
-                    <li><a href="index.html" title=""><i class="fa fa-home"></i> </a> </li>
+                    <li><a href="{{ url('/') }}" title=""><i class="fa fa-home"></i> </a> </li>
                     <li>
                         <a href="list.html" title="">Thể loại</a>
                         <ul>
                             <li><a href="list.html" title="">Tình cảm- lãng mạn</a> </li>
-                            <li><a href="list.html" title="">Phim hành động</a> </li>
-                            <li><a href="list.html" title="">Phim hài hước</a> </li>
-                            <li><a href="list.html" title="">Phim cổ trang</a> </li>
-                            <li><a href="list.html" title="">Phim viễn tưởng</a> </li>
-                            <li><a href="list.html" title="">Phim võ thuật</a> </li>
-                            <li><a href="list.html" title="">Tình cảm- lãng mạn</a> </li>
-                            <li><a href="list.html" title="">Phim hành động</a> </li>
-                            <li><a href="list.html" title="">Phim hài hước</a> </li>
-                            <li><a href="" title="">Phim cổ trang</a> </li>
-                            <li><a href="" title="">Phim viễn tưởng</a> </li>
-                            <li><a href="" title="">Phim võ thuật</a> </li>
-                            <li><a href="" title="">Tình cảm- lãng mạn</a> </li>
-                            <li><a href="" title="">Phim hành động</a> </li>
-                            <li><a href="" title="">Phim hài hước</a> </li>
-                            <li><a href="" title="">Phim cổ trang</a> </li>
-                            <li><a href="" title="">Phim viễn tưởng</a> </li>
-                            <li><a href="" title="">Phim võ thuật</a> </li>
                         </ul>
                     </li>
                     <li><a href="list.html" title="">Quốc Gia</a> </li>

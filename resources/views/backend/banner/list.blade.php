@@ -32,6 +32,7 @@
                                         <td><span class="thead-text">Tiêu đề</span></td>
                                         <td><span class="thead-text">Ảnh</span></td>
                                         <td><span class="thead-text">Nội dung banner</span></td>
+                                        <td><span class="thead-text">Trạng thái</span></td>
                                         <td><span class="thead-text">Thời gian</span></td>
                                         <td><span class="thead-text">Hành động</span></td>
                                     </tr>
@@ -41,7 +42,7 @@
                                         @foreach ($list_banner as  $key => $banner)
                                             <tr>
                                                 <td><input type="checkbox" name="chkItem[]" value="{{ empty($banner->id) == true ? '' :   $banner->id }}"></td>
-                                                <td><span class="tbody-text">{{ ++$key }}</span>
+                                                <td><span class="tbody-text">{{ ++$key }}</span>3
                                                 <td class="clearfix title-news" style="display: flex">
                                                     <div class="tb-title fl-left">
                                                         <a href="{{ route('banner.edit', $banner->id) }}"
@@ -58,14 +59,17 @@
                                                     <span class="tbody-text">{{ empty($banner->content) == true ? '' :  $banner->content }}</span>
                                                 </td>
                                                 <td>
+                                                    {{ convertStatus(@$banner->status) }}
+                                                </td>
+                                                <td>
                                                     <span class="tbody-text">{{ date('d-m-Y', strtotime($banner->updated_at)) }}</span>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('banner.edit', $banner->id) }}">
+                                                    <a href="{{ route('banner.edit', @$banner->id) }}">
                                                         <i class="fa fa-pencil fa-fw"></i> Sửa
                                                     </a>
                                                     <a href="javascript:;" class="btn-destroy"
-                                                       data-href="{{ route( 'banner.destroy',  $banner->id ) }}"
+                                                       data-href="{{ route( 'banner.destroy',  @$banner->id ) }}"
                                                        data-toggle="modal" data-target="#confim">
                                                         <i class="fa fa-trash-o fa-fw"></i> Xóa
                                                     </a>

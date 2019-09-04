@@ -20,3 +20,8 @@
     display: flex;
 }
 
+ul.NhanCate {
+    padding-left: 0px !important;
+    max-height: 196px;
+    overflow: auto;
+}
