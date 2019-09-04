@@ -33,7 +33,6 @@ class MovieRequest extends FormRequest
             'air_date' => 'required',//ngay cong chieu
             'movie_duration' => 'required', //thoi luong phim
             'directors' => 'required', // dao dien
-            'cate_id' => 'required',
             'status' => 'required',
             'fImage' => 'required',
         ];
@@ -55,7 +54,6 @@ class MovieRequest extends FormRequest
             'air_date.required' => 'Bạn chưa nhập ngày công chiếu phim.',
             'movie_duration.required' => 'Bạn chưa nhập thời lượng phim.',
             'directors.required' => 'Bạn chưa nhập đạo diễn phim.',
-            'cate_id.required' => 'Bạn chưa chọn danh mục phim.',
             'status.required' => 'Bạn chưa chọn trạng thái phim.',
             'fImage.required' => 'Bạn chưa chọn ảnh phim.',
         ];

@@ -18,6 +18,13 @@ class MovieRepository extends EloquentRepository
         return $data;
     }
 
+    public function listMoviesActive()
+    {
+        $data = Movie::where('status', 1)->orderBy('name', 'ASC')->get();
+
+        return $data;
+    }
+
     public function findMovie($id)
     {
         $data = Movie::find($id);

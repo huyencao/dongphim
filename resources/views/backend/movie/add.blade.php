@@ -49,10 +49,6 @@
                         <label>Thông tin phim</label>
                         <input type="text" name="info" id="" class="form-control" value="">
                     </div>
-{{--                    <div class="form-group">--}}
-{{--                        <label>Lượt view</label>--}}
-{{--                        <input type="text" name="view" id="" class="form-control" value="">--}}
-{{--                    </div>--}}
                     <div class="form-group">
                         <label>Năm sản xuất</label>
                         <input type="number" min="0" name="production_year" id="" class="form-control" value="">

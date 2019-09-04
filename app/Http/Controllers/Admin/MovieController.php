@@ -10,7 +10,7 @@ use App\Repositories\MovieRepository;
 use App\Repositories\CateMovieRepository;
 use App\Repositories\PivotRepository;
 use App\Http\Requests\MovieRequest;
-use App\Http\Requests\EditCateMovieRequest;
+use App\Http\Requests\EditMovieRequest;
 use Auth;
 use Hash;
 use File;
@@ -123,7 +123,7 @@ class MovieController extends Controller
 
         $cate_movie = $this->cate_movie->listCateMovie();
 
-       return view('backend.movie.edit', compact('detail_movie', 'cate_movie', 'cates'));
+        return view('backend.movie.edit', compact('detail_movie', 'cate_movie', 'cates'));
     }
 
     /**
@@ -133,9 +133,68 @@ class MovieController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditMovieRequest $request, $id)
     {
-dd($request->all());
+        $movie = $this->movie->findMovie($id);
+
+        if (!empty($request->file('fImage'))) {
+            $image = $movie->image;
+            $file_name      = $request->file('fImage')->getClientOriginalName();
+            $thumbnail    = 'uploads/actor/'.time().'-'.$file_name;
+            $request->file('fImage')->move('uploads/actor/', $thumbnail);
+            if(File::exists($image)){
+                File::delete($image);
+            }
+        }
+
+        if (empty($thumbnail)){
+            $image_actor = $movie->image;
+        } else
+        {
+            $image_actor = $thumbnail;
+        }
+
+        if (!empty($request->air_date))
+        {
+            $air_date = $request->air_date;
+        } else {
+            $air_date = $movie->air_date;
+        }
+
+        if (!empty($request->cate_id)) {
+            // xoa id phim cu
+            $pivot_item = $this->pivot->findMovieDelete($id);
+            foreach ($pivot_item as $item) {
+                $pivot_id = $item->id;
+                $this->pivot->delete($pivot_id);
+            }
+
+            // them moi lai id phim moi
+            $cate_id = $request->cate_id;
+
+            foreach ($cate_id as $item) {
+                $pivot = new Pivot;
+                $pivot->cate_id = $item;
+                $pivot->movie_id = $id;
+                $pivot->save();
+            }
+        }
+
+        $request->merge(
+            [
+                'image' => $image_actor,
+                'air_date' => $air_date
+            ]
+        );
+
+        $this->movie->update($id, $request->all());
+
+
+        return redirect()->route('movie.index')->with([
+            'flash_level' => 'success',
+            'flash_message' => 'Cập nhật thành công !'
+        ]);
+
     }
 
     /**
@@ -149,7 +208,7 @@ dd($request->all());
         $data = $this->movie->findMovie($id);
         if (isset($data)) {
             $image = $data->image;
-            if(File::exists($image)){
+            if (File::exists($image)) {
                 File::delete($image);
             }
             $this->movie->delete($id);
@@ -175,7 +234,7 @@ dd($request->all());
             foreach ($checked as $id) {
                 $movie = Movie::find($id);
 
-                if(File::exists($movie->image)){
+                if (File::exists($movie->image)) {
                     File::delete($movie->image);
                 }
 

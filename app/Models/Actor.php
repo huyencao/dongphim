@@ -8,10 +8,10 @@ class Actor extends Model
 {
     protected $table = 'actor';
 
-    protected $fillable =  ['name', 'slug', 'desc_actor', 'cast', 'image', 'movie_id'];
+    protected $fillable =  ['name', 'slug', 'desc_actor', 'image'];
 
     public function movie()
     {
-        return $this->belongsTo(Movie::class, 'movie_id', 'id');
+        return $this->belongsToMany(Movie::class);
     }
 }

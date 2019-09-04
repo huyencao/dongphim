@@ -33,7 +33,9 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::resource('banner', 'BannerController');
         Route::post('banner/deleteAll', ['as' => 'banner.deleteAll', 'uses' => 'BannerController@deleteAll']);
         Route::resource('actor', 'ActorController');
+        Route::post('actor/deleteAll', ['as' => 'actor.deleteAll', 'uses' => 'ActorController@deleteAll']);
         Route::resource('episode', 'EpisodeController');
+        Route::post('episode/deleteAll', ['as' => 'episode.deleteAll', 'uses' => 'EpisodeController@deleteAll']);
     });
 });
 

@@ -31,6 +31,7 @@
                                     <td><span class="thead-text">Tên phim</span></td>
                                     <td><span class="thead-text">Ảnh phim</span></td>
                                     <td><span class="thead-text">Thông tin phim</span></td>
+                                    <td><span class="thead-text">Danh mục phim</span></td>
                                     <td><span class="thead-text">Năm sản xuất</span></td>
                                     <td><span class="thead-text">Đạo diễn phim</span></td>
                                     <td><span class="thead-text">Ngày công chiếu</span></td>
@@ -59,9 +60,20 @@
                                             <td>
                                                 {{ @$item->info }}
                                             </td>
+                                            <td>
+                                                <?php
+                                                $movie_id = DB::table('pivot')->where('movie_id', @$item->id)->get();
+                                                $cateID = $movie_id->pluck('cate_id')->toArray();
+                                                $cates = DB::table('cate_movie')->whereIn('id', $cateID)->get();
+                                                ?>
+                                                {{--                                                {{ dd($cates) }}--}}
+                                                {{--                                                @foreach($cates as $item)--}}
+                                                {{--                                                    {{@$item->name}}--}}
+                                                {{--                                                @endforeach--}}
+                                            </td>
                                             <td>{{ @$item->production_year }}</td>
                                             <td>{{ @$item->directors }}</td>
-                                            <td>{{ date('d-m-Y', strtotime($item->air_date)) }}</td>
+                                            <td>{{ date('d-m-Y', strtotime(@$item->air_date)) }}</td>
                                             <td>{{ convertStatus(@$item->status) }}</td>
                                             <td>
                                                 <a href="{{ route('movie.edit', @$item->id) }}">

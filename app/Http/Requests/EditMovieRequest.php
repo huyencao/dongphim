@@ -13,7 +13,7 @@ class EditMovieRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,33 @@ class EditMovieRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:191',
+            'slug' => 'required|max:191',
+            'info' => 'required', // thong tin phim
+            'production_year' => 'required',//nam sx
+            'show_times' => 'required', //lich chieu
+            'content' => 'required',
+            'movie_duration' => 'required', //thoi luong phim
+            'directors' => 'required', // dao dien
+            'status' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Bạn chưa nhập tên bộ phim.',
+            'name.max' => 'Tên bộ phim không thể vượt quá 191 ký tự',
+            'slug.required' => 'Bạn chưa nhập đường dẫn tĩnh.',
+            'slug.max' => 'Tên bộ phim không thể vượt quá 191 ký tự',
+            'info.required' => 'Bạn chưa nhập thông tin phim.',
+            'production_year.required' => 'Bạn chưa nhập năm sản xuất.',
+            'show_times.required' => 'Bạn chưa nhập thông tin - lịch chiếu.',
+            'content.required' => 'Bạn chưa nhập nội dung phim.',
+            'air_date.required' => 'Bạn chưa nhập ngày công chiếu phim.',
+            'movie_duration.required' => 'Bạn chưa nhập thời lượng phim.',
+            'directors.required' => 'Bạn chưa nhập đạo diễn phim.',
+            'status.required' => 'Bạn chưa chọn trạng thái phim.',
         ];
     }
 }

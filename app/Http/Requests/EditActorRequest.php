@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditMenuRequest extends FormRequest
+class EditActorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,19 @@ class EditMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'link' => 'required',
-            'position' => 'required',
-            'status' =>'required',
+            'name' => 'required|max:100',
+            'slug' => 'required|max:100',
+//            'fImage' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'title.required' => 'Bạn chưa nhập tên menu!',
-            'link.required' => 'Bạn chưa nhập đường dẫn menu!',
-            'position.required' => 'Bạn chưa nhập vị trí menu',
-            'status.required' => 'Bạn chưa chọn trạng thái menu'
+            'name.required' => 'Bạn chưa nhập tên diễn viên.',
+            'name.max' => 'Tên diễn viên không thể lớn hơn 100 ký tự.',
+            'slug.required' => 'Bạn chưa nhập đường dẫn tĩnh.',
+            'slug.max' => 'Đường dẫn tĩnh không thể lớn hơn 100 ký tự.',
         ];
     }
 }

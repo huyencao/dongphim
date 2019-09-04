@@ -107,7 +107,7 @@ class BannerController extends Controller
         $banner = $this->banner->findBanner($id);
 
         if (!empty($request->file('fImage'))) {
-            $image = $banner->thumbnail;
+            $image = $banner->image;
             $file_name      = $request->file('fImage')->getClientOriginalName();
             $thumbnail    = 'uploads/banner/'.time().'-'.$file_name;
             $request->file('fImage')->move('uploads/banner/', $thumbnail);

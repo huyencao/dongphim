@@ -67,6 +67,7 @@
                     </div>
                     <div class="form-group">
                         <label>Ngày công chiếu</label>
+                        <input type="text" class="form-control" value="{{ date('d-m-Y', strtotime($detail_movie->air_date)) }}" disabled style="margin-bottom: 10px">
                         <input type="date" name="air_date" id="" class="form-control">
                     </div>
                     <div class="form-group">
@@ -86,6 +87,13 @@
                     </div>
                     <div class="form-group">
                         <label>Danh mục phim</label><br>
+                        <?php
+                        $movie_id = DB::table('pivot')->where('movie_id', @$detail_movie->id)->get();
+                        $cateID = $movie_id->pluck('cate_id')->toArray();
+                        $cates = DB::table('cate_movie')->whereIn('id', $cateID)->get();
+
+                        ?>
+                        <input type="text" class="form-control" value="@foreach($cates as $item) {{$item->name}}, @endforeach" disabled style="margin-bottom: 10px">
                         <select class="js-select2 form-control" multiple="multiple" name="cate_id[]">
                             {{ cateParent($cate_movie) }}
                         </select>
@@ -123,7 +131,7 @@
                 </div>
             </div>
             <div class="col-md-8 box-footer">
-                <button type="submit" class="btn btn-primary">Thêm mới</button>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
             </div>
         </div>
     </form>
