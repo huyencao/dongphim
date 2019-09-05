@@ -1,5 +1,6 @@
 <?php
 namespace app\Http\lib;
+
 class Menu{
 	protected $_data = array();
 	protected $_result = '';

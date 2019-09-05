@@ -46,7 +46,6 @@ Route::get('logout', 'Auth\LoginController@logout');
 //frontend
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('phim', 'MovieController@movieList')->name('movieList');
-//    Route::get('phim/{slug}', 'MovieController@movies')->name('movies');
+//    Route::get('{slug}', 'MovieListController@movies')->name('movies');
 //    Route::get('{slug}.html', 'MovieController@detailMovie')->name('detailMovie');
 });
