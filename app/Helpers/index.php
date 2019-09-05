@@ -1,4 +1,5 @@
 <?php
+use Ixudra\Curl\Facades\Curl;
 
 function convertStatus($item)
 {
@@ -42,27 +43,6 @@ function cateParent($data, $parent_id = 0, $char = '')
     }
 }
 
-//menu
-//function menuParent($data_menu, $parent_id = 0, $char = '')
-//{
-//    foreach ($data_menu as $key => $item) {
-//        if ($item['parent_id'] == $parent_id) {
-//            echo '<ul class="col-md-12 parent' . $char . '">
-//                        <li class="form-group has-success has-feedback">
-//                            <input type="text" id="inputSuccess2" value="' . $item['name'] . '" class="form-control inputSuccess2">
-//                            <ul class="form-control-feedback">
-//                                <li class="destroy"><a href="' . route('destroy.delete', $item['id']) . '"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-//                                </li>
-//                                <li><a href="' . route('menu.edit', $item['id']) . '" class="glyphicon glyphicon-pencil edit"></a></li>
-//                            </ul>
-//                        </li>
-//                    </ul>';
-//            unset($data_menu[$key]);
-//            menuParent($data_menu, $item['id'], $char . ' menu-1');
-//        }
-//    }
-//}
-
 
 function star($star)
 {
@@ -97,4 +77,29 @@ function star($star)
               <i class="fa fa-star-o"></i>
               <i class="fa fa-star-o"></i>';
     }
+}
+
+function curl_get_contents($url,$useragent='cURL',$headers=false, $follow_redirects=false,$debug=false) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    if ($headers==true){
+        curl_setopt($ch, CURLOPT_HEADER,1);
+    }
+    if ($headers=='headers only') {
+        curl_setopt($ch, CURLOPT_NOBODY ,1);
+    }
+    if ($follow_redirects==true) {
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    }
+    if ($debug==true) {
+        $result['contents']=curl_exec($ch);
+        $result['info']=curl_getinfo($ch);
+    } else {
+        $result=curl_exec($ch);
+    }
+    curl_close($ch);
+    return $result;
 }

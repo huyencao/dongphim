@@ -187,7 +187,7 @@ return [
         EloquentFilter\ServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-
+        Ixudra\Curl\CurlServiceProvider::class,
     ],
 
     /*
@@ -243,6 +243,7 @@ return [
         'Twitter' => Artesaos\SEOTools\Facades\TwitterCard::class,
         // or
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'Curl'          => Ixudra\Curl\Facades\Curl::class,
     ],
 
 ];

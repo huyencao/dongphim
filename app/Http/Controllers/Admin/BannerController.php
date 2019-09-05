@@ -147,7 +147,7 @@ class BannerController extends Controller
     {
         $banner = $this->banner->findBanner($id);
         if (isset($banner)) {
-            $image = $banner->thumbnail;
+            $image = $banner->image;
             if(File::exists($image)){
                 File::delete($image);
             }

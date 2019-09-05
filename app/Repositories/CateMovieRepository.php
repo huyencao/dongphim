@@ -13,7 +13,14 @@ class CateMovieRepository extends EloquentRepository
 
     public function listCateMovie()
     {
-        $data = CateMovie::where('status', 1)->orderBy('updated_at', 'DESC')->get();
+        $data = CateMovie::orderBy('updated_at', 'DESC')->get();
+
+        return $data;
+    }
+
+    public function listCateMovieActive()
+    {
+        $data = CateMovie::where('status', 1)->orderBy('id', 'ASC')->get();
 
         return $data;
     }

@@ -66,10 +66,10 @@
                                                 $cateID = $movie_id->pluck('cate_id')->toArray();
                                                 $cates = DB::table('cate_movie')->whereIn('id', $cateID)->get();
                                                 ?>
-                                                {{--                                                {{ dd($cates) }}--}}
-                                                {{--                                                @foreach($cates as $item)--}}
-                                                {{--                                                    {{@$item->name}}--}}
-                                                {{--                                                @endforeach--}}
+{{--                                                                                                {{ $cates[0]->name }}--}}
+                                                    @foreach($cates as $value)
+                                                        {{@$value->name}},
+                                                    @endforeach
                                             </td>
                                             <td>{{ @$item->production_year }}</td>
                                             <td>{{ @$item->directors }}</td>

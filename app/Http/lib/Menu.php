@@ -3,7 +3,8 @@ namespace app\Http\lib;
 class Menu{
 	protected $_data = array();
 	protected $_result = '';
-	protected $_open = '<ul>';
+	protected $_open = '<ul class="main-nav flex-center-between">';
+	protected $_open1 = '<ul>';
 	protected $_close = '</ul>';
 	protected $_openitem = '<li>';
 	protected $_closeitem = '</li>';
@@ -50,19 +51,24 @@ class Menu{
     public function callMenu($parent = 0)
     {
 		if (isset($this->_data[$parent])) {
-			$this->_result .= $this->_open;
+		    if ($parent == 0) {
+                $this->_result .= $this->_open; // thẻ ul mở c1
+                $this->_result .= '<li><a href=""><i class="fa fa-home"></i> </a></li>';
+            } else {
+		        $this->_result .= $this->_open1;
+            }
 			foreach ($this->_data[$parent] as $tmp) {
-				$this->_result .= $this->_openitem;
+				$this->_result .= $this->_openitem; // mở thẻ li c1
 				$id = $tmp['id'];
 				if (isset($this->_data[$id])) {
-					$this->_result .= '<a href="' . $tmp['link'] . '" class="dropdown-toggle" data-toggle="dropdown" role="button">' . $tmp['title'] . '</a>';
+					$this->_result .= '<a href="' . $tmp['slug'] . '">' . $tmp['name'] . '</a>';
 				} else {
-					$this->_result .= '<a href="' . $tmp['link'] . '">' . $tmp['title'] . '</a>';
+					$this->_result .= '<a href="' . $tmp['slug'] . '">' . $tmp['name'] . '</a>';
 				}
 				$this->callMenu($id);
-				$this->_result .= $this->_closeitem;
+				$this->_result .= $this->_closeitem; // đóng thẻ li c
 			}
-			$this->_result .= $this->_close;
+			$this->_result .= $this->_close;// đóng thẻ ul cấp 1
         }
 		return $this->_result;
 	}
