@@ -33,6 +33,7 @@
                                         <td><span class="thead-text">Ảnh</span></td>
                                         <td><span class="thead-text">Bộ phim</span></td>
 {{--                                        <td><span class="thead-text">Lượt xem</span></td>--}}
+                                        <td><span class="thead-text">Trạng thái</span></td>
                                         <td><span class="thead-text">Hành động</span></td>
                                     </tr>
                                     </thead>
@@ -59,9 +60,7 @@
                                                 <td>
                                                     <span class="tbody-text">{{  @$episode->movie->name }}</span>
                                                 </td>
-{{--                                                <td>--}}
-{{--                                                    <span class="tbody-text">{{  number_format(@$episode->view, 0, '.', '.') }}</span>--}}
-{{--                                                </td>--}}
+                                                <td>{{ convertStatus(@$episode->status) }}</td>
                                                 <td>
                                                     <a href="{{ route('episode.edit', @$episode->id) }}">
                                                         <i class="fa fa-pencil fa-fw"></i> Sửa

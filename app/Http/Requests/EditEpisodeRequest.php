@@ -29,6 +29,7 @@ class EditEpisodeRequest extends FormRequest
             'url' => 'required',
             'type' => 'required',
             'movie_id' => 'required',
+            'status' => 'required',
         ];
     }
 
@@ -41,6 +42,7 @@ class EditEpisodeRequest extends FormRequest
             'slug.max' => 'Đường dẫn tĩnh không thể lớn hơn 100 ký tự.',
             'url.required' => 'Bạn chưa nhập link phim.',
             'type.required' => 'Bạn chưa chọn loại tập phim.',
+            'status.required' => 'Bạn chưa chọn trạng thái tập phim.',
             'movie_id.required' => 'Bạn chưa chọn bộ phim.',
         ];
     }

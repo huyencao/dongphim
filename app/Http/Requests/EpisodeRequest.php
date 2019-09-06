@@ -29,6 +29,7 @@ class EpisodeRequest extends FormRequest
             'url' => 'required',
             'type' => 'required',
             'movie_id' => 'required',
+            'status' => 'required',
             'fImage' => 'required|max:2048',
         ];
     }
@@ -43,6 +44,7 @@ class EpisodeRequest extends FormRequest
             'url.required' => 'Bạn chưa nhập link phim.',
             'type.required' => 'Bạn chưa chọn loại tập phim.',
             'movie_id.required' => 'Bạn chưa chọn bộ phim.',
+            'status.required' => 'Bạn chưa chọn trạng thái tập phim.',
             'fImage.required' => 'Bạn chưa chọn ảnh tập phim.',
         ];
     }

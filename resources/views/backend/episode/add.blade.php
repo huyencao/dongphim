@@ -50,7 +50,14 @@
                             @endif
                         </select>
                     </div>
-
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select name="status" class="form-control">
+                            <option value="">Chọn trạng thái</option>
+                            <option value="1">Hiển thị</option>
+                            <option value="0">Không hiển thị</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">

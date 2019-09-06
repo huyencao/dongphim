@@ -8,14 +8,34 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="image-filmInfo"><a href="video-film.html" title=""><img
-                                            src="{{ asset(@$movie_detail->image) }}" alt="" title=""> </a></div>
+                                            src="{{ asset(@$movie_detail->image) }}" alt="" title=""
+                                            style="width: 507.8px; height: 513.45px"> </a></div>
                         </div>
                         <div class="col-md-7">
                             <div class="content-filmInfo">
-                                <h1><a href="video-film.html" title="">{{ @$movie_detail->name }}</a></h1>
+                                <h1><a href="" title="">{{ @$movie_detail->name }}</a></h1>
                                 <h2>{{ @$movie_detail->info }}</h2>
                                 <ul class="film-index">
-{{--                                    <li>Lượt xem: 123.456</li>--}}
+                                    @if (!empty($list_episode))
+                                        <?php $view = array(); ?>
+                                        @foreach ($list_episode as $episode)
+                                            <?php
+                                            $url = @$episode->url;
+                                            parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
+                                            $video_ID = $my_array_of_vars['v'];
+                                            $app_key = 'AIzaSyBtw9pLrJjiTV6VdSyc3Z5LofS_bXIfWT4';
+                                            $api_response = curl_get_contents('https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' . $video_ID . '&fields=items/statistics&key=' . $app_key);
+                                            $api_response_decoded = json_decode($api_response, true);
+                                            $view[] = $api_response_decoded['items'][0]['statistics']['viewCount'];
+                                            ?>
+                                        @endforeach
+                                        <?php $totalView = array_sum($view);
+                                        if (!empty($totalView)) {
+                                            echo '<li> Lượt xem: ' . number_format($totalView, 0, '.', '.') . '</li>';
+                                        }
+                                        ?>
+                                    @endif
+                                    {{--                                    <li>Lượt xem: 123.456</li>--}}
                                     <li>Năm sản xuất: {{ @$movie_detail->production_year }}</li>
                                 </ul>
                                 <div class="film-episode">
@@ -23,16 +43,12 @@
                                     <ul>
                                         @if (!empty($list_episode))
                                             @foreach ($list_episode as $episode)
-                                                <li><a href="" title="{{ @$episode->name }}">{{ @$episode->name }}</a></li>
+                                                <li><a href="/dongphim/video/{{ @$episode->slug}}-{{  @$episode->id }}.html" title="{{ @$episode->name }}">{{ @$episode->name }}</a>
+                                                </li>
                                             @endforeach
                                         @endif
                                     </ul>
                                     {{ $list_episode->links() }}
-{{--                                    {{ $list_episode->links('view.paginationFilm') }}--}}
-{{--                                    <div class="link-backprev flex-center-between">--}}
-{{--                                        <a href="" title=""><i class="fa fa-backward"></i> Mới hơn</a>--}}
-{{--                                        <a href="" title="">Cũ hơn<i class="fa fa-forward"></i></a>--}}
-{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>

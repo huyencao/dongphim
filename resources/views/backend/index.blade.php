@@ -168,7 +168,15 @@
 
                         </li>
                 @endif
+                <li class="{{ Request::segment(2) === 'menu' ? 'active' : null  }}">
 
+                    <a href="{{ route('menu.index') }}">
+
+                        <i class="fa fa-bars" aria-hidden="true"></i> <span>Menu</span>
+
+                    </a>
+
+                </li>
                 <li class="{{ Request::segment(2) === 'banner' ? 'active' : null  }}">
 
                     <a href="{{ route('banner.index') }}">

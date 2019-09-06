@@ -8,7 +8,7 @@ class Movie extends Model
 {
     protected $table = 'movies';
 
-    protected $fillable =  ['name', 'slug', 'info', 'production_year', 'show_times', 'content', 'air_date', 'episodes', 'movie_duration', 'directors', 'status', 'image', 'user_id', 'meta_title', 'meta_description', 'meta_keyword'];
+    protected $fillable =  ['name', 'slug', 'info', 'production_year', 'show_times', 'content', 'air_date', 'episodes', 'movie_duration', 'directors', 'status', 'image', 'appoint', 'upcoming', 'user_id', 'meta_title', 'meta_description', 'meta_keyword'];
 
     public function cateMovie()
     {

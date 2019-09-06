@@ -75,6 +75,7 @@ class MovieController extends Controller
             [
                 'user_id' => $user->id,
                 'image' => !empty($image) == true ? $image : null,
+//                'appoint' => $request->appoints
             ]
         );
 

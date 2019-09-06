@@ -57,7 +57,19 @@
                             @endif
                         </select>
                     </div>
-
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select name="status" class="form-control">
+                            <option value="">Chọn trạng thái</option>
+                            @if (@$data->status == 1)
+                                <option value="1" selected>Hiển thị</option>
+                                <option value="0">Không hiển thị</option>
+                            @else
+                                <option value="1">Hiển thị</option>
+                                <option value="0" selected>Không hiển thị</option>
+                            @endif
+                        </select>
+                    </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">

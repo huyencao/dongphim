@@ -14,4 +14,9 @@ class CateMovie extends Model
     {
         return $this->belongsToMany(Movie::class);
     }
+
+    public function menu()
+    {
+        return $this->hasOne(Menu::class);
+    }
 }

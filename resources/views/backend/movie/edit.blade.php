@@ -67,7 +67,9 @@
                     </div>
                     <div class="form-group">
                         <label>Ngày công chiếu</label>
-                        <input type="text" class="form-control" value="{{ date('d-m-Y', strtotime($detail_movie->air_date)) }}" disabled style="margin-bottom: 10px">
+                        <input type="text" class="form-control"
+                               value="{{ date('d-m-Y', strtotime($detail_movie->air_date)) }}" disabled
+                               style="margin-bottom: 10px">
                         <input type="date" name="air_date" id="" class="form-control">
                     </div>
                     <div class="form-group">
@@ -93,10 +95,46 @@
                         $cates = DB::table('cate_movie')->whereIn('id', $cateID)->get();
 
                         ?>
-                        <input type="text" class="form-control" value="@foreach($cates as $item) {{$item->name}}, @endforeach" disabled style="margin-bottom: 10px">
+                        <input type="text" class="form-control"
+                               value="@foreach($cates as $item) {{$item->name}}, @endforeach" disabled
+                               style="margin-bottom: 10px">
                         <select class="js-select2 form-control" multiple="multiple" name="cate_id[]">
                             {{ cateParent($cate_movie) }}
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Phim đề cử</label>
+                        <div class="appoint" style="margin-left: 10px">
+                            @if (@$detail_movie->appoint == 1)
+                                <input type="radio" name="appoint" value="1" style="margin-right: 10px" checked> <span>Đề cử</span>
+                                <br>
+                                <input type="radio" name="appoint" value="0" style="margin-right: 10px">
+                                <span>Không đề cử</span>
+                            @else
+                                <input type="radio" name="appoint" value="1" style="margin-right: 10px"> <span>Đề cử</span>
+                                <br>
+                                <input type="radio" name="appoint" value="0" style="margin-right: 10px" checked>
+                                <span>Không đề cử</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="padding-right: 15px">Phim sắp chiếu</label>
+                        <div class="appoint" style="margin-left: 10px">
+                            @if (@$detail_movie->upcoming == 1)
+                                <input type="radio" name="upcoming" value="1" style="margin-right: 10px" checked>
+                                <span>Sắp chiếu</span>
+                                <br>
+                                <input type="radio" name="upcoming" value="0"
+                                       style="margin-right: 10px"><span>Đã chiếu</span>
+                            @else
+                                <input type="radio" name="upcoming" value="1" style="margin-right: 10px">
+                                <span>Sắp chiếu</span>
+                                <br>
+                                <input type="radio" name="upcoming" value="0" checked
+                                       style="margin-right: 10px"><span>Đã chiếu</span>
+                            @endif
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Hình ảnh</label>

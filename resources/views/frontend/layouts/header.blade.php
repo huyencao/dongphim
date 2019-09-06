@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-1 flex-center">
-                    <a href="index.html" class=""><img src="{{ asset(@$setting->site_logo) }}" alt="" title=""> </a>
+                    <a href="{{ asset('/') }}" class=""><img src="{{ asset(@$setting->site_logo) }}" alt="" title=""> </a>
                     <button class="btn-search-mb"><i class="fa fa-search"></i></button>
                     <a id="cd-menu-trigger" href="#0" class=""><span class="cd-menu-icon"></span></a>
                 </div>

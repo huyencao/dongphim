@@ -50,4 +50,12 @@ class CateMovieRepository extends EloquentRepository
 
         return $cat;
     }
+
+    public function findCateView($slug = '')
+    {
+        $cate_theaters = CateMovie::where('slug', $slug)->first();
+
+        return $cate_theaters;
+    }
+
 }

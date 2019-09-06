@@ -36,14 +36,16 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('actor/deleteAll', ['as' => 'actor.deleteAll', 'uses' => 'ActorController@deleteAll']);
         Route::resource('episode', 'EpisodeController');
         Route::post('episode/deleteAll', ['as' => 'episode.deleteAll', 'uses' => 'EpisodeController@deleteAll']);
+        Route::resource('menu', 'MenuController');
     });
 });
 
 //frontend
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('danh-sach-phim/{slug}', 'HomeMovieController@movies')->name('movies');
-    Route::get('chi-tiet/{slug}-{id}.htm', 'HomeMovieController@detail')->name('movies.detail');
+    Route::get('album/{slug}.htm', 'HomeMovieController@movies')->name('movies');
+    Route::get('chi-tiet/{slug}-{id}.html', 'HomeMovieController@detail')->name('movies.detail');
+    Route::get('video/{slug}-{id}.html', 'HomeMovieController@video')->name('movies.video');
 });
 
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
