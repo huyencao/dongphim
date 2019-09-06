@@ -27,4 +27,18 @@ class EpisodeRepository extends EloquentRepository
             return $data;
         }
     }
+
+    public function findMovieTrailer($id)
+    {
+        $data = Episode::with('movie')->where('movie_id', $id)->where('status', 1)->where('type', 1)->orderBy('updated_at', 'DESC')->get();
+
+        return $data;
+    }
+
+    public function listMovieID($movieID)
+    {
+        $data = Episode::with('movie')->where('movie_id', $movieID)->where('status', 1)->orderBy('updated_at', 'DESC')->simplePaginate(14);
+
+        return $data;
+    }
 }

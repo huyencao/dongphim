@@ -62,9 +62,9 @@ class Menu{
 				$this->_result .= $this->_openitem; // mở thẻ li c1
 				$id = $tmp['id'];
 				if (isset($this->_data[$id])) {
-					$this->_result .= '<a href="' . $tmp['slug'] . '">' . $tmp['name'] . '</a>';
+					$this->_result .= '<a href="danh-sach-phim/' . $tmp['slug'] . '">' . $tmp['name'] . '</a>';
 				} else {
-					$this->_result .= '<a href="' . $tmp['slug'] . '">' . $tmp['name'] . '</a>';
+					$this->_result .= '<a href="danh-sach-phim/' . $tmp['slug'] . '">' . $tmp['name'] . '</a>';
 				}
 				$this->callMenu($id);
 				$this->_result .= $this->_closeitem; // đóng thẻ li c

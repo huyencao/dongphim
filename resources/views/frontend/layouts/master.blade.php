@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{!! url(!empty($setting->site_favicon) ? $setting->site_favicon : '') !!}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {!! SEO::generate() !!}
-    <link rel="shortcut icon" type="image/x-icon"
-          href="{!! url(!empty($setting->site_favicon) ? $setting->site_favicon : '') !!}">
     <!--link css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/slick.min.css') }}">
@@ -14,6 +14,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/responsive.css') }}">
     <script type="text/javascript" src="{{ asset('public/frontend/js/jquery.min.js') }}"></script>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=880442072335161&autoLogAppEvents=1"></script>
 </head>
 <body>
 

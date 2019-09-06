@@ -39,13 +39,13 @@ Route::group(['namespace' => 'Admin'], function () {
     });
 });
 
-Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout');
-
 //frontend
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('home');
-//    Route::get('{slug}', 'MovieListController@movies')->name('movies');
-//    Route::get('{slug}.html', 'MovieController@detailMovie')->name('detailMovie');
+    Route::get('danh-sach-phim/{slug}', 'HomeMovieController@movies')->name('movies');
+    Route::get('chi-tiet/{slug}-{id}.htm', 'HomeMovieController@detail')->name('movies.detail');
 });
+
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
+Route::post('login', 'Auth\LoginController@login');
+Route::get('logout', 'Auth\LoginController@logout');

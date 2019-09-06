@@ -27,11 +27,25 @@ class MovieRepository extends EloquentRepository
 
     public function findMovie($id)
     {
-        $data = Movie::find($id);
+        $data = Movie::with('episode')->find($id);
         if ($data == null) {
             return false;
         } else {
             return $data;
         }
+    }
+
+    public function listMoviesCate($movie_id)
+    {
+        $movies = Movie::whereIn('id', $movie_id)->orderBy('updated_at', 'DESC')->paginate(20);
+
+        return $movies;
+    }
+
+    public function listMoviesUser($user_id)
+    {
+        $data = Movie::where('status', 1)->where('user_id', $user_id)->get();
+
+        return $data;
     }
 }

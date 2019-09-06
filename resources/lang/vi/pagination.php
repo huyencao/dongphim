@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'previous' => '&laquo; Trước',
-    'next' => 'Sau &raquo;',
+    'previous' => 'Cũ hơn',
+    'next' => 'Mới hơn',
 
 ];

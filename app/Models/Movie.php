@@ -17,7 +17,7 @@ class Movie extends Model
 
     public function episode()
     {
-        return $this->hasMany(Episode::class, 'id', 'id');
+        return $this->hasMany(Episode::class);
     }
 
     public function actor()

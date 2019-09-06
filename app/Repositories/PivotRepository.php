@@ -17,4 +17,11 @@ class PivotRepository extends EloquentRepository
 
         return $data;
     }
+
+    public function listProductID($cat)
+    {
+        $movieID = Pivot::where('cate_id', $cat)->select('movie_id')->orderBy('updated_at', 'DESC')->get();
+
+        return $movieID;
+    }
 }

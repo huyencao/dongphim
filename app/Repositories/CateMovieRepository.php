@@ -32,6 +32,7 @@ class CateMovieRepository extends EloquentRepository
         return $data;
     }
 
+    // TODO: find cate movie id
     public function findCate($id)
     {
         $data = CateMovie::find($id);
@@ -40,5 +41,13 @@ class CateMovieRepository extends EloquentRepository
         } else {
             return $data;
         }
+    }
+
+    // TODO : find cate movie home view
+    public function findCateHome($slug)
+    {
+        $cat = CateMovie::where('slug', $slug)->first();
+
+        return $cat;
     }
 }

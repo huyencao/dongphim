@@ -30,4 +30,8 @@ return [
 
     'compiled' => realpath(storage_path('framework/views')),
 
+    'pagination' => 'pagination::simple',
+
+//    'pagination' => 'pagination.my-links',
+
 ];

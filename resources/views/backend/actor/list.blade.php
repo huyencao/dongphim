@@ -64,7 +64,6 @@
                                                     $movie_id = DB::table('movie_actor')->where('actor_id', @$actor->id)->get();
                                                     $movieID = $movie_id->pluck('movie_id')->toArray();
                                                     $movie = DB::table('movies')->whereIn('id', $movieID)->get();
-                                                    //                                                    dd($movie[0]->name);
                                                     ?>
                                                     @foreach($movie as $item)
                                                         {{$item->name}},
