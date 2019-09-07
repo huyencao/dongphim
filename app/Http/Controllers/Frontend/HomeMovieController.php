@@ -33,7 +33,6 @@ class HomeMovieController extends Controller
     {
 //        $data = explode("-", $id);
 //        $catID = end($data);
-
         $cat = $this->cate_movie->findCateHome($slug);
 
         //seo
@@ -62,7 +61,7 @@ class HomeMovieController extends Controller
 
         if ($slug == 'phim-de-cu') {
             $data_movie = $this->movie->listMoviesAppointCat();
-        } elseif ( $slug == 'phim-sap-chieu'){
+        } elseif ($slug == 'phim-sap-chieu') {
             $data_movie = $this->movie->listMoviesUpcomingCat();
         } else {
             $data_movie = $this->movie->listMoviesCate($movie_id);
@@ -112,7 +111,31 @@ class HomeMovieController extends Controller
         $episodeID = end($data);
 
         $episode_detail = $this->episode->findEpisode($episodeID);
+        $movie_id = $episode_detail->movie_id;
+        $movie = $this->movie->findMovie($movie_id);
 
-        return view('frontend.home.video', compact('episode_detail'));
+        $list_episode = $this->episode->listMovieID($movie_id);
+
+
+        $userID = $movie->user_id;
+        $list_interested = $this->movie->listMoviesUser($userID);
+
+        //seo
+        if (empty($episode_detail->meta_title)) {
+            SEO::setTitle($episode_detail->name);
+        } else {
+            SEO::setTitle($episode_detail->meta_title);
+        }
+
+        SEO::setDescription(empty($episode_detail->meta_description) ? '' : $episode_detail->meta_description);
+
+        SEOMeta::addKeyword(!empty($episode_detail->meta_keyword) ? $episode_detail->meta_keyword : 'Video film');
+        SEO::opengraph()->setUrl(url()->current());
+        OpenGraph::setTitle(empty($episode_detail->meta_title) ? $episode_detail->name : $episode_detail->meta_title);
+        OpenGraph::setDescription(empty($episode_detail->meta_description) ? '' : $episode_detail->meta_description);
+        OpenGraph::addImage(asset($episode_detail->image));
+        //end seo
+
+        return view('frontend.home.video', compact('episode_detail', 'list_interested', 'list_episode'));
     }
 }

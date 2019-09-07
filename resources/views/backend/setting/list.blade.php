@@ -66,6 +66,16 @@
 
                     </div>
 
+                    <div class="form-group">
+                        <label>Nội dung</label>
+                        <textarea id="content" cols="30" rows="10" name="content">{{ @$site_info->content }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Website</label>
+                        <input type="text" class="form-control" name="website" id="website" value="{{ @$site_info->website }}">
+                    </div>
+
                 </div>
 
             </div>

@@ -6,9 +6,7 @@
                     <div class="footer-1">
                         <div class="logo-footer mgb-20"><a href="" title=""><img src="{{ asset($setting->site_logo) }}"
                                                                                  alt="" title=""> </a></div>
-                        <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus
-                            commodo viverra maecenas accumsan lacus vel facilisis.
+                        <div class="desc">{!! @$setting->content !!}
                         </div>
                     </div>
                 </div>
@@ -68,7 +66,7 @@
     </section>
     <section class="copyright">
         <div class="container">
-            <p><a href="" title="">yeuphimhot.com</a></p>
+            <p><a href="" title="">{{ @$setting->website }}</a></p>
         </div>
     </section>
 </footer>

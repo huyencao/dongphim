@@ -42,12 +42,27 @@ class MovieRepository extends EloquentRepository
         return $movies;
     }
 
-    public function listMoviesCateAPI($movie_api)
+    public function listMoviesCatePB($movie_pb)
     {
-        $movies = Movie::whereIn('id', $movie_api)->orderBy('updated_at', 'DESC')->limit(4)->get();
+        $movies = Movie::whereIn('id', $movie_pb)->orderBy('updated_at', 'DESC')->limit(4)->get();
 
         return $movies;
     }
+
+    public function listMoviesCatePL($movie_pl)
+    {
+        $movies = Movie::whereIn('id', $movie_pl)->orderBy('updated_at', 'DESC')->limit(4)->get();
+
+        return $movies;
+    }
+
+    public function listMoviesCateHH($movie_hh)
+    {
+        $movies = Movie::whereIn('id', $movie_hh)->orderBy('updated_at', 'DESC')->limit(4)->get();
+
+        return $movies;
+    }
+
 
     public function listMoviesUser($user_id)
     {

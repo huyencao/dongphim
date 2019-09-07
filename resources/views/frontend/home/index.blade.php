@@ -54,8 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="mgt-30 text-center"><a href="/dongphim/album/phim-de-cu.htm" title=""
-                                                                   class="btn-general">XEM
-                                        THÊM</a></div>
+                                                                   class="btn-general">XEM THÊM</a></div>
                             </div>
                             <div class="box-film mgt-50">
                                 <h2 class="title"><a href="" title="">Phim chiếu rạp</a></h2>
@@ -106,8 +105,7 @@
                                 <div class="film-tab">
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#tab-1" role="tab" data-toggle="tab">Phim
-                                                Bộ</a>
+                                            <a class="nav-link active" href="#tab-1" role="tab" data-toggle="tab">Phim Bộ</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#tab-2" role="tab" data-toggle="tab">Phim Lẻ</a>
@@ -121,9 +119,9 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in show active" id="tab-1">
                                             @if (!empty($data_pb))
-                                                @foreach ($data_pb as $pb)
+                                                @foreach ($data_pb as $key => $pb)
                                                     <div class="film-thumb">
-                                                        <span class="nth-1">1</span>
+                                                        <span class="nth-{{ ++$key }}">{{ $key }}</span>
                                                         <a href="" title="" class="thumb-image"><img
                                                                     src="{{ asset(@$pb->image) }}"
                                                                     alt="" title=""> </a>
@@ -150,30 +148,64 @@
                                             @endif
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="tab-2">
-                                            <div class="film-thumb">
-                                                <span class="nth-1">1</span>
-                                                <a href="" title="" class="thumb-image"><img
-                                                            src="{{ asset('public/frontend/images/thumb-1.png') }}"
-                                                            alt="" title=""> </a>
-                                                <div class="thumb-content">
-                                                    <h4><a href="" title="">Chiếc Lá Cuốn Bay</a></h4>
-                                                    <h5><a href="" title="">Bai Mai Tee Plid Plew (2019)</a></h5>
-                                                    <p>Tập 10</p>
-                                                </div>
-                                            </div>
+                                            @if (!empty($data_pl))
+                                                @foreach ($data_pl as $key => $pb)
+                                                    <div class="film-thumb">
+                                                        <span class="nth-{{ ++$key }}">{{ $key }}</span>
+                                                        <a href="" title="" class="thumb-image"><img
+                                                                    src="{{ asset(@$pb->image) }}"
+                                                                    alt="" title=""> </a>
+                                                        <div class="thumb-content">
+                                                            <h4>
+                                                                <a href="/dongphim/chi-tiet/{{ @$pb->slug }}-{{ @$pb->id }}.html"
+                                                                   title="">{{ str_limit(@$pb->name, 15) }}</a></h4>
+                                                            <h5>
+                                                                <a href="/dongphim/chi-tiet/{{ @$pb->slug }}-{{ @$pb->id }}.html"
+                                                                   title="">{{ str_limit(@$pb->info, 15) }}</a>
+                                                            </h5>
+                                                            <?php
+                                                            $movie_id = @$pb->id;
+                                                            $episodes = DB::table('episode')->select('name')->where('movie_id', $movie_id)->orderBy('updated_at', 'DESC')->first();
+                                                            if (!empty($episodes))
+                                                                echo '<p>' . $episodes->name . '</p>';
+                                                            else {
+                                                                echo '';
+                                                            }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="tab-3">
-                                            <div class="film-thumb">
-                                                <span class="nth-1">1</span>
-                                                <a href="" title="" class="thumb-image"><img
-                                                            src="{{ asset('public/frontend/images/thumb-4.png') }}"
-                                                            alt="" title=""> </a>
-                                                <div class="thumb-content">
-                                                    <h4><a href="" title="">Chiếc Lá Cuốn Bay</a></h4>
-                                                    <h5><a href="" title="">Bai Mai Tee Plid Plew (2019)</a></h5>
-                                                    <p>Tập 10</p>
-                                                </div>
-                                            </div>
+                                            @if (!empty($data_hh))
+                                                @foreach ($data_hh as $key => $pb)
+                                                    <div class="film-thumb">
+                                                        <span class="nth-{{ ++$key }}">{{ $key }}</span>
+                                                        <a href="" title="" class="thumb-image"><img
+                                                                    src="{{ asset(@$pb->image) }}"
+                                                                    alt="" title=""> </a>
+                                                        <div class="thumb-content">
+                                                            <h4>
+                                                                <a href="/dongphim/chi-tiet/{{ @$pb->slug }}-{{ @$pb->id }}.html"
+                                                                   title="">{{ str_limit(@$pb->name, 15) }}</a></h4>
+                                                            <h5>
+                                                                <a href="/dongphim/chi-tiet/{{ @$pb->slug }}-{{ @$pb->id }}.html"
+                                                                   title="">{{ str_limit(@$pb->info, 15) }}</a>
+                                                            </h5>
+                                                            <?php
+                                                            $movie_id = @$pb->id;
+                                                            $episodes = DB::table('episode')->select('name')->where('movie_id', $movie_id)->orderBy('updated_at', 'DESC')->first();
+                                                            if (!empty($episodes))
+                                                                echo '<p>' . $episodes->name . '</p>';
+                                                            else {
+                                                                echo '';
+                                                            }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

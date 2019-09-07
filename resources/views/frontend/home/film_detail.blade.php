@@ -21,21 +21,21 @@
                                         @foreach ($list_episode as $episode)
                                             <?php
                                             $url = @$episode->url;
-                                            parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
-                                            $video_ID = $my_array_of_vars['v'];
+                                               preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+                                            $video_ID = $match[1];
                                             $app_key = 'AIzaSyBtw9pLrJjiTV6VdSyc3Z5LofS_bXIfWT4';
                                             $api_response = curl_get_contents('https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' . $video_ID . '&fields=items/statistics&key=' . $app_key);
                                             $api_response_decoded = json_decode($api_response, true);
                                             $view[] = $api_response_decoded['items'][0]['statistics']['viewCount'];
                                             ?>
                                         @endforeach
-                                        <?php $totalView = array_sum($view);
-                                        if (!empty($totalView)) {
-                                            echo '<li> Lượt xem: ' . number_format($totalView, 0, '.', '.') . '</li>';
-                                        }
+                                        <?php
+                                            $totalView = array_sum($view);
+                                            if (!empty($totalView)) {
+                                                echo '<li> Lượt xem: ' . number_format($totalView, 0, '.', '.') . '</li>';
+                                            }
                                         ?>
                                     @endif
-                                    {{--                                    <li>Lượt xem: 123.456</li>--}}
                                     <li>Năm sản xuất: {{ @$movie_detail->production_year }}</li>
                                 </ul>
                                 <div class="film-episode">

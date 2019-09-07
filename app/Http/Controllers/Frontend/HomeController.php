@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use SEO;
@@ -105,12 +106,47 @@ class HomeController extends Controller
             $movie_pb[] = $pin->movie_id;
         }
 
-        $data_pb = $this->movie->listMoviesCateAPI($movie_pb);
+        $data_pb = $this->movie->listMoviesCatePB($movie_pb);
+        //  end phimm bo
 
         // ds phim le
+        $slug_phimle = 'phim-le';
+        $movie_phimle = $this->cate_movie->findCateView($slug_phimle);
+        $id_phimle = $movie_phimle->id;
+        $moviePL = $this->pivot->listMovieID($id_phimle);
+        $movie_pl = array();
+        foreach ($moviePL as $pin) {
+            $movie_pl[] = $pin->movie_id;
+        }
+
+        $data_pl = $this->movie->listMoviesCatePL($movie_pl);
+        //end phim le
 
         // ds hoat hinh
+        $slug_hoathinh = 'hoat-hinh-anime';
+        $movie_hoathinh = $this->cate_movie->findCateView($slug_hoathinh);
+        $id_hoathinh = $movie_hoathinh->id;
+        $movieHH = $this->pivot->listMovieID($id_hoathinh);
+        $movie_hh = array();
+        foreach ($movieHH as $pin) {
+            $movie_hh[] = $pin->movie_id;
+        }
 
-        return view('frontend.home.index', compact('data_movie', 'data_animated', 'data_tvshow', 'data_appoint', 'data_upcoming', 'data_pb'));
+        $data_hh = $this->movie->listMoviesCateHH($movie_hh);
+//dd($data_hh);
+        //het phim hoat hinh
+
+        return view('frontend.home.index', compact('data_movie', 'data_animated', 'data_tvshow', 'data_appoint', 'data_upcoming', 'data_pb', 'data_pl', 'data_hh'));
+    }
+
+//    public function result(Request $request)
+//    {
+//        $result = Movie::where('name', 'LIKE', "%{$request->input('query')}%")->get();
+//        return response()->json($result);
+//    }
+
+    public function find(Request $request) {
+        $movie = Movie::where('name', 'like', '%' . $request->get('q') . '%')->get();
+        return response()->json($movie);
     }
 }

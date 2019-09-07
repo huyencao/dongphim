@@ -14,7 +14,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/css/responsive.css') }}">
     <script type="text/javascript" src="{{ asset('public/frontend/js/jquery.min.js') }}"></script>
-
+{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--}}
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>--}}
+    {{--    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>--}}
+{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--}}
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=880442072335161&autoLogAppEvents=1"></script>
 </head>
@@ -55,5 +58,52 @@
 <script type="text/javascript" src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('public/frontend/js/slick.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('public/frontend/js/private.js') }}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+{{--<script type="text/javascript">--}}
+{{--    var path = "{{ url('search') }}";--}}
+{{--    $('#search').typeahead({--}}
+{{--        minLength: 2,--}}
+{{--        source:  function (query, process) {--}}
+{{--            return $.get(path, { query: query }, function (data) {--}}
+{{--                return process(data);--}}
+{{--                console.log(data)--}}
+{{--            });--}}
+{{--        }--}}
+{{--    });--}}
+{{--</script>--}}
+<script>
+    jQuery(document).ready(function($) {
+        var engine = new Bloodhound({
+            remote: {
+                url: 'find?q=%QUERY%',
+                wildcard: '%QUERY%'
+            },
+            datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace
+        });
+
+        $(".search-input").typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            source: engine.ttAdapter(),
+            name: 'usersList',
+            templates: {
+                empty: [
+                    '<div class="list-group search-results-dropdown"><div class="list-group-item" style="color: #191919;">Không có kết quả phù hợp.</div></div>'
+                ],
+                header: [
+                    '<div class="list-group search-results-dropdown">'
+                ],
+                suggestion: function (data) {
+                    return '<a href="/dongphim/chi-tiet/' + data.slug + '-' + data.id + '.html" class="list-group-item" style="color: #191919;">' + data.name + '</a>'
+                }
+            }
+        });
+    });
+</script>
 </body>
+
 </html>

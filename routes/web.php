@@ -46,6 +46,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('album/{slug}.htm', 'HomeMovieController@movies')->name('movies');
     Route::get('chi-tiet/{slug}-{id}.html', 'HomeMovieController@detail')->name('movies.detail');
     Route::get('video/{slug}-{id}.html', 'HomeMovieController@video')->name('movies.video');
+    Route::get('find', 'HomeController@find')->name('home.find');
 });
 
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@getLogin']);
