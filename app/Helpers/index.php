@@ -24,10 +24,10 @@ function showCategories($data, $parent_id = 0, $char = '')
     foreach ($data as $key => $item) {
         if ($item['parent_id'] == $parent_id) {
             echo '<option value="' . $item['id'] . '">';
-            echo $char . $item['title'];
+            echo $char . $item['name'];
             echo '</option>';
             unset($data[$key]);
-            showCategories($data, $item['id'], $char . '---  ');
+            showCategories($data, $item['id'], $char . '-- ');
         }
     }
 }

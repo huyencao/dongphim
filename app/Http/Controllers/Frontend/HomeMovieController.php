@@ -31,6 +31,9 @@ class HomeMovieController extends Controller
 
     public function movies($slug = '')
     {
+//        $data = explode("-", $id);
+//        $catID = end($data);
+
         $cat = $this->cate_movie->findCateHome($slug);
 
         //seo
@@ -50,21 +53,29 @@ class HomeMovieController extends Controller
 //        end seo
 
         $cat_id = $cat->id;
-        $movieID = $this->pivot->listProductID($cat_id);
-        foreach($movieID as $pin){
-            $movie_id[]=$pin->movie_id;
+
+        $movieID = $this->pivot->listMovieID($cat_id);
+        $movie_id = array();
+        foreach ($movieID as $pin) {
+            $movie_id[] = $pin->movie_id;
         }
 
-        $data_movie = $this->movie->listMoviesCate($movie_id);
+        if ($slug == 'phim-de-cu') {
+            $data_movie = $this->movie->listMoviesAppointCat();
+        } elseif ( $slug == 'phim-sap-chieu'){
+            $data_movie = $this->movie->listMoviesUpcomingCat();
+        } else {
+            $data_movie = $this->movie->listMoviesCate($movie_id);
+
+        }
 
         return view('frontend.home.list_movie', compact('data_movie', 'cat'));
     }
 
     public function detail($slug = '', $id)
     {
-
         $data = explode("-", $id);
-        $movieID =  end($data);
+        $movieID = end($data);
         $movie_detail = $this->movie->findMovie($movieID);
 
         // list episode movie
@@ -72,7 +83,6 @@ class HomeMovieController extends Controller
 
         //list trailer movie
         $movie_trailer = $this->episode->findMovieTrailer($movieID);
-//        dd($movie_detail->user_id);
         //list movies interested(cùng user)
         $userID = $movie_detail->user_id;
         $list_interested = $this->movie->listMoviesUser($userID);
@@ -94,6 +104,15 @@ class HomeMovieController extends Controller
 //        end seo
 
         return view('frontend.home.film_detail', compact('movie_detail', 'movie_trailer', 'list_interested', 'list_episode'));
+    }
 
+    public function video($slug = '', $id)
+    {
+        $data = explode("-", $id);
+        $episodeID = end($data);
+
+        $episode_detail = $this->episode->findEpisode($episodeID);
+
+        return view('frontend.home.video', compact('episode_detail'));
     }
 }

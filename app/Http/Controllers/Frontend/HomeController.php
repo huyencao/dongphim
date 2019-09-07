@@ -11,14 +11,26 @@ use TwitterCard;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Hash;
 use App\Repositories\SettingRepository;
+use App\Repositories\CateMovieRepository;
+use App\Repositories\MovieRepository;
+use App\Repositories\EpisodeRepository;
+use App\Repositories\PivotRepository;
 
 class HomeController extends Controller
 {
     protected $setting;
+    protected $cate_movie;
+    protected $pivot;
+    protected $movie;
+    protected $episode;
 
-    public function __construct(SettingRepository $setting)
+    public function __construct(SettingRepository $setting, CateMovieRepository $cate_movie, PivotRepository $pivot, MovieRepository $movie, EpisodeRepository $episode)
     {
         $this->setting = $setting;
+        $this->cate_movie = $cate_movie;
+        $this->pivot = $pivot;
+        $this->movie = $movie;
+        $this->episode = $episode;
     }
 
     public function index()
@@ -38,8 +50,67 @@ class HomeController extends Controller
         OpenGraph::setTitle(empty($seo->meta_title) ? 'Động phim' : $seo->meta_title);
         OpenGraph::setDescription(empty($seo->meta_description) ? '' : $seo->meta_description);
         OpenGraph::addImage(asset($seo->site_logo));
+//        END SEO
 
+        // danh sach phim chieu rap trang chu
+        $slug_theaters = 'phim-chieu-rap';
+        $movie_theaters = $this->cate_movie->findCateView($slug_theaters);
+        $id_theaters = $movie_theaters->id;
+        $movieID = $this->pivot->listMovieID($id_theaters);
+        $movie_id = array();
+        foreach ($movieID as $pin) {
+            $movie_id[] = $pin->movie_id;
+        }
+        $data_movie = $this->movie->listMoviesCate($movie_id);
+        // end theaters
 
-        return view('frontend.home.index');
+        // danh sach phim hoat hinh
+        $slug_animated  = 'hoat-hinh-anime';
+        $movie_animated = $this->cate_movie->findCateView($slug_animated);
+        $id_animated = $movie_animated->id;
+        $movieID1 = $this->pivot->listMovieID($id_animated);
+        $movie_id1 = array();
+        foreach ($movieID1 as $pin) {
+            $movie_id1[] = $pin->movie_id;
+        }
+        $data_animated = $this->movie->listMoviesCate($movie_id1);
+        //het phim hoat hinh
+
+        // danh sach tvshow
+        $slug_tvshow = 'tv-show';
+        $movie_tvshow = $this->cate_movie->findCateView($slug_tvshow);
+        $id_tvshow = $movie_tvshow->id;
+        $movieID2 = $this->pivot->listMovieID($id_tvshow);
+        $movie_id2 = array();
+        foreach ($movieID2 as $pin) {
+            $movie_id2[] = $pin->movie_id;
+        }
+        $data_tvshow = $this->movie->listMoviesCate($movie_id2);
+        //het ds tvshow
+
+        //danh sach phim de cu
+        $data_appoint = $this->movie->listMoviesAppoint();
+         //het phim de cu
+
+        // danh sach phim sap chieu
+        $data_upcoming = $this->movie->upcomingActiveHome();
+
+        // danh sách phim bo
+        $slug_phimbo = 'phim-bo';
+        $movie_phimbo = $this->cate_movie->findCateView($slug_phimbo);
+        $id_phimbo = $movie_phimbo->id;
+        $moviePB = $this->pivot->listMovieID($id_phimbo);
+        $movie_pb = array();
+        foreach ($moviePB as $pin) {
+            $movie_pb[] = $pin->movie_id;
+        }
+
+        $data_pb = $this->movie->listMoviesCateAPI($movie_pb);
+
+        // ds phim le
+
+        // ds hoat hinh
+
+        return view('frontend.home.index', compact('data_movie', 'data_animated', 'data_tvshow', 'data_appoint', 'data_upcoming', 'data_pb'));
     }
 }

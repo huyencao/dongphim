@@ -76,6 +76,23 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label>Phim đề cử</label>
+                        <div class="appoint" style="margin-left: 10px">
+                            <input type="radio" name="appoint" value="1" style="margin-right: 10px"> <span>Đề cử</span>
+                            <br>
+                            <input type="radio" name="appoint" value="0" style="margin-right: 10px"><span>Không đề cử</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="padding-right: 15px">Phim sắp chiếu</label>
+                        <div class="appoint" style="margin-left: 10px">
+                            <input type="radio" name="upcoming" value="1" style="margin-right: 10px"> <span>Sắp chiếu</span>
+                            <br>
+                            <input type="radio" name="upcoming" value="0" style="margin-right: 10px"><span>Đã chiếu</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label>Hình ảnh</label>
                         <div class="file-loading">
                             <input id="inpImg" name="fImage" type="file">

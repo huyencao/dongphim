@@ -20,7 +20,7 @@ class EpisodeRepository extends EloquentRepository
 
     public function findEpisode($id)
     {
-        $data = Episode::find($id);
+        $data = Episode::with('movie')->find($id);
         if ($data == null) {
             return false;
         } else {
@@ -37,8 +37,13 @@ class EpisodeRepository extends EloquentRepository
 
     public function listMovieID($movieID)
     {
-        $data = Episode::with('movie')->where('movie_id', $movieID)->where('status', 1)->orderBy('updated_at', 'DESC')->simplePaginate(14);
+        $data = Episode::with('movie')->where('movie_id', $movieID)->where('status', 1)->orderBy('updated_at', 'DESC')->simplePaginate(28);
 
         return $data;
     }
+
+//    public function findDetailEpisode($slug)
+//    {
+//        $data =  Episode::with('movie')->where('slug', $slug)->first();
+//    }
 }
